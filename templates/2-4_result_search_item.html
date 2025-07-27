@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<h1>{{ result_type }}結果</h1>
+<p>以下の商品を{{ result_type }}しました</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>価格</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{ item.item_id }}</td>
+      <td>{{ item.item_name }}</td>
+      <td>{{ item.price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  CSVダウンロード
+</button>
+
+<a href="/item" class="btn btn-primary">戻る</a>
+{% endblock %}

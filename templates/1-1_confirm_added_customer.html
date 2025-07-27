@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %}
+<h1>新規顧客登録確認ページ</h1>
+<p>以下の顧客を登録しました</p>
+<p>顧客ID: {{ customer.customer_id }}</p>
+<p>顧客名: {{ customer.customer_name }}</p>
+<p>年齢: {{ customer.age }}</p>
+<p>性別: {{ customer.gender }}</p>
+{% endblock %}

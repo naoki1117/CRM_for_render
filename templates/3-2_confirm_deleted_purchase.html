@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %}
+<p>購入情報削除確認ページ</p>
+<p>以下の購入情報を削除しました</p>
+<p>購入ID:{{ purchase.purchase_id }}</p>
+<p>顧客名:{{ purchase.customer_id }}</p>
+<p>購入日:{{ purchase.purchase_date }}</p>
+<a href="/purchase">購入情報一覧に戻る</a>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+
+<p>[抽出結果]</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">顧客ID</th>
+      <th scope="col">顧客名</th>
+      <th scope="col">年齢</th>
+      <th scope="col">性別</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for customer in customers %}
+    <tr>
+      <th scope="row">{{ customer.customer_id }}</th>
+      <td>{{ customer.customer_name }}</td>
+      <td>{{ customer.age }}</td>
+      <td>{{ customer.gender }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="/" class="btn btn-primary">戻る</a>
+{% endblock %}

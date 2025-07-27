@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+<h1>商品更新確認ページ</h1>
+<p>以下の商品を更新しました</p>
+<p>商品ID: {{ item.item_id }}</p>
+<p>商品名: {{ item.item_name }}</p>
+<p>価格: {{ item.price }}</p>
+
+<a href="/item" class="btn btn-primary">戻る</a>
+{% endblock %}

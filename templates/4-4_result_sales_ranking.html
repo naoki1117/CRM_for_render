@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+
+<p>販売数量商品別ランキング</p>
+
+<ul>
+  {% for item in result %}
+  <li>{{ item }}</li>
+  {% endfor %}
+</ul>
+
+<a href="/purchase_data_statistics">統計画面に戻る</a>
+
+{% endblock %}

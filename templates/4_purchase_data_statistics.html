@@ -1,0 +1,108 @@
+{% extends 'base.html' %} {% block content %}
+<p>購入情報検索/分析ページ</p>
+<p>[1.購入情報一覧]</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>購入ID</th>
+      <th>購入日</th>
+      <th>顧客ID</th>
+      <th>商品ID</th>
+      <th>数量</th>
+      <th>価格</th>
+      <th>顧客名</th>
+      <th>商品名</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for joined_purchase_detail in joined_purchase_details %}
+    <tr>
+      <th scope="row">{{ joined_purchase_detail.Purchase.purchase_id }}</th>
+      <td>{{ joined_purchase_detail.Purchase.purchase_date }}</td>
+      <td>{{ joined_purchase_detail.Customer.customer_id }}</td>
+      <td>{{ joined_purchase_detail.Item.item_id }}</td>
+      <td>{{ joined_purchase_detail.PurchaseDetail.quantity }}</td>
+      <td>{{ joined_purchase_detail.Item.price }}</td>
+      <td>{{ joined_purchase_detail.Customer.customer_name }}</td>
+      <td>{{ joined_purchase_detail.Item.item_name }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p>[2.購入情報検索]</p>
+<form method="post" action="/search_purchase">
+  <div class="row mb-3">
+    <label for="input-item-name" class="col-sm-2 col-form-label">商品名</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="input-item-name"
+        name="input-item-name"
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="input-customer-name" class="col-sm-2 col-form-label"
+      >顧客名</label
+    >
+    <div class="col-sm-10">
+      <select
+        class="form-select"
+        id="input-customer-name"
+        name="input-customer-name"
+      >
+        <option value=""></option>
+        {% for customer in customers %}
+        <option value="{{ customer.customer_name }}">
+          {{ customer.customer_name }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="input-purchase-date" class="col-sm-2 col-form-label"
+      >購入日</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="date"
+        class="form-control"
+        id="input-purchase-date"
+        name="input-purchase-date"
+      />
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" formmethod="post">検索</button>
+</form>
+
+<p>[3.統計]</p>
+<form method="post" action="/count_customers">
+  <button type="submit" class="btn btn-primary" formmethod="post">
+    1.総顧客数
+  </button>
+</form>
+
+<form method="post" action="/count_quantity" class="mt-4">
+  <button type="submit" class="btn btn-primary" formmethod="post">
+    2.総販売数量
+  </button>
+</form>
+
+<form method="post" action="/total_sales" class="mt-4">
+  <button type="submit" class="btn btn-primary" formmethod="post">
+    3.総売上金額
+  </button>
+</form>
+
+<form method="post" action="/sales_ranking" class="mt-4">
+  <button type="submit" class="btn btn-primary" formmethod="post">
+    4.販売数量商品別ランキング
+  </button>
+</form>
+
+{% endblock %}

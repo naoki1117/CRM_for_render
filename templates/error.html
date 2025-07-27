@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% block content %}
+<h1>エラーページ</h1>
+
+<p>以下のエラーが発生しました。 登録or削除or更新or検索ができませんでした。</p>
+<p>{{ error }}</p>
+<a href="/" class="btn btn-primary">戻る</a>
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends 'base.html' %} {% block content %}
+
+<p>[1.商品一覧]</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">商品ID</th>
+      <th scope="col">商品名</th>
+      <th scope="col">価格</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <th scope="row">{{ item.item_id }}</th>
+      <td>{{ item.item_name }}</td>
+      <td>{{ item.price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<form action="/download_csv" method="POST">
+  <button type="submit" class="btn btn-primary">CSVダウンロード</button>
+</form>
+
+<p>[2.商品新規登録]</p>
+
+<form action="/add_item" method="POST">
+  <div class="row mb-3">
+    <label for="input-item-id" class="col-sm-2 col-form-label">商品ID</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="input-item-id"
+        name="input-item-id"
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="input-item-name" class="col-sm-2 col-form-label">商品名</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="input-item-name"
+        name="input-item-name"
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="input-item-price" class="col-sm-2 col-form-label">価格</label>
+    <div class="col-sm-10">
+      <input
+        type="number"
+        class="form-control"
+        id="input-item-price"
+        name="input-item-price"
+        value="100"
+      />
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">商品登録</button>
+</form>
+
+<p>[3.商品削除]</p>
+
+<form action="/delete_item" method="POST">
+  <div class="row mb-3">
+    <label for="input-item-id" class="col-sm-2 col-form-label">商品ID</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="input-item-id"
+        name="input-item-id"
+      />
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">商品削除</button>
+</form>
+
+<p>[4.商品更新]</p>
+
+<form action="/update_item" method="POST">
+  <div class="row mb-3">
+    <label for="input-item-id" class="col-sm-2 col-form-label"
+      >更新する商品ID</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="input-item-id"
+        name="input-item-id"
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="input-item-name" class="col-sm-2 col-form-label"
+      >更新する商品名</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="input-item-name"
+        name="input-item-name"
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="input-item-price" class="col-sm-2 col-form-label"
+      >更新する価格</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="number"
+        class="form-control"
+        id="input-item-price"
+        name="input-item-price"
+        value="100"
+      />
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">商品更新</button>
+</form>
+
+<p>[5.商品名で抽出]</p>
+
+<form action="/search_item" method="POST">
+  <div class="row mb-3">
+    <label for="input-item-name" class="col-sm-2 col-form-label">商品名</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="input-item-name"
+        name="input-item-name"
+      />
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">商品名で抽出</button>
+</form>
+
+<p>[6.単価で並び替え]</p>
+
+<form action="/sort_item" method="POST">
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">並び替え</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="order-type"
+          id="ascending"
+          value="ascending"
+        />
+        <label class="form-check-label" for="ascending">単価で昇順</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="order-type"
+          id="descending"
+          value="descending"
+        />
+        <label class="form-check-label" for="descending">単価で降順</label>
+      </div>
+    </div>
+  </fieldset>
+  <button type="submit" class="btn btn-primary">並び替え</button>
+</form>
+{% endblock %}

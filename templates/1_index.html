@@ -1,0 +1,128 @@
+{% extends 'base.html' %} {% block content %}
+
+<p>[1.顧客一覧]</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">顧客ID</th>
+      <th scope="col">顧客名</th>
+      <th scope="col">年齢</th>
+      <th scope="col">性別</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for customer in customers %}
+    <tr>
+      <th scope="row">{{ customer.customer_id }}</th>
+      <td>{{ customer.customer_name }}</td>
+      <td>{{ customer.age }}</td>
+      <td>{{ customer.gender }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p style="margin-top: 100px">[2.顧客新規登録]</p>
+
+<form action="/add_customer" method="POST">
+  <div class="row mb-3">
+    <label for="input-customer-id" class="col-sm-2 col-form-label"
+      >顧客ID</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="input-customer-id"
+        name="input-customer-id"
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="input-customer-name" class="col-sm-2 col-form-label"
+      >顧客名</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="input-customer-name"
+        name="input-customer-name"
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="input-customer-age" class="col-sm-2 col-form-label">年齢</label>
+    <div class="col-sm-10">
+      <input
+        type="number"
+        class="form-control"
+        id="input-customer-age"
+        name="input-customer-age"
+      />
+    </div>
+  </div>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">性別</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="input-gender"
+          id="gender-male"
+          value="男性"
+          checked
+        />
+        <label class="form-check-label" for="gender-male">男性</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="input-gender"
+          id="gender-female"
+          value="女性"
+        />
+        <label class="form-check-label" for="gender-female">女性</label>
+      </div>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn btn-primary">登録</button>
+</form>
+
+<p style="margin-top: 100px">[3.性別で顧客一覧から抽出]</p>
+
+<form action="/select_gender" method="POST">
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">抽出する性別を選択</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="input-gender2"
+          id="gender-male2"
+          value="男性"
+          checked
+        />
+        <label class="form-check-label" for="gender-male2">男性</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="input-gender2"
+          id="gender-female2"
+          value="女性"
+        />
+        <label class="form-check-label" for="gender-female2">女性</label>
+      </div>
+    </div>
+  </fieldset>
+  <button type="submit" class="btn btn-primary">検索</button>
+</form>
+
+{% endblock %}
